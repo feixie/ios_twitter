@@ -8,6 +8,7 @@
 
 #import "TimelineVC.h"
 #import "TweetCell.h"
+#import "TweetDetailVC.h"
 
 @interface TimelineVC ()
 
@@ -26,6 +27,16 @@
     if (self) {
         self.title = @"Twitter";
         
+        [self reload];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.title = @"Twitter";
+
         [self reload];
     }
     return self;
@@ -80,7 +91,7 @@
     NSString *imageUrl = tweet.profileImageUrl;
     //[cell.profilePictureImageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]];
     
-    NSLog(@"%@", tweet.profileImageUrl);
+    NSLog(@"%@", tweet.retweetCount);
     
     return cell;
 }
@@ -88,6 +99,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 110;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UITableViewCell *selectedCell = (UITableViewCell *)sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
+    Tweet *tweet = self.tweets[indexPath.row];
+    
+    TweetDetailVC *tweetDetailVC = (TweetDetailVC *)segue.destinationViewController;
+    tweetDetailVC.tweet = tweet;
 }
 
 /*
@@ -155,7 +175,7 @@
 
 - (void)reload {
     [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"%@", response);
+        //NSLog(@"%@", response);
         self.tweets = [Tweet tweetsWithArray:response];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
