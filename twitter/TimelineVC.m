@@ -7,6 +7,7 @@
 //
 
 #import "TimelineVC.h"
+#import "TweetCell.h"
 
 @interface TimelineVC ()
 
@@ -63,14 +64,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-
+    static NSString *tweetTableIdentifier = @"TweetCell";
+    
+    TweetCell *cell = (TweetCell *)[tableView dequeueReusableCellWithIdentifier:tweetTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TweetCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
     Tweet *tweet = self.tweets[indexPath.row];
-    cell.textLabel.text = tweet.text;
+    cell.nameLabel.text = tweet.name;
+    cell.tweetLabel.text = tweet.text;
+    cell.timestampLabel.text = tweet.timestamp;
+    NSString *imageUrl = tweet.profileImageUrl;
+    //[cell.profilePictureImageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]];
+    
+    NSLog(@"%@", tweet.profileImageUrl);
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 110;
 }
 
 /*
