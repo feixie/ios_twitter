@@ -65,6 +65,25 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
     [self getPath:@"1.1/statuses/home_timeline.json" parameters:params success:success failure:failure];
 }
 
+#pragma mark - Tweets API
+
+- (void)retweetWithId:(NSNumber*)id success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSString *partOnePath = @"1.1/statuses/retweet/";
+    NSString *path = [[partOnePath stringByAppendingString:[id stringValue]] stringByAppendingString:@".json"];
+    NSLog(@"retweeting to path: %@", path);
+    [self postPath:path parameters:nil success:success failure:failure];
+
+}
+
+#pragma mark - Favoriates API
+
+- (void)favoriteWithId:(NSNumber*)id success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": id}];
+    [self postPath:@"1.1/favorites/create.json" parameters:params success:success failure:failure];
+    NSLog(@"favoriting id: %@@", id);
+
+}
+
 #pragma mark - Private methods
 
 - (void)setAccessToken:(AFOAuth1Token *)accessToken {

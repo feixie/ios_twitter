@@ -12,10 +12,11 @@
 
 @property (nonatomic, strong, readonly) NSString *text;
 @property (nonatomic, strong, readonly) NSString *timestamp;
-@property (nonatomic, strong, readonly) NSString *favoriteCount;
-@property (nonatomic, strong, readonly) NSString *retweetCount;
+@property (nonatomic, strong, readonly) NSNumber *favoriteCount;
+@property (nonatomic, strong, readonly) NSNumber *retweetCount;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *profileImageUrl;
+@property (nonatomic, strong, readonly) NSNumber *tweetId;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 

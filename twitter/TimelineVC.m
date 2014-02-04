@@ -91,7 +91,7 @@
     NSString *imageUrl = tweet.profileImageUrl;
     //[cell.profilePictureImageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]];
     
-    NSLog(@"%@", tweet.retweetCount);
+    //NSLog(@"%@", tweet.retweetCount);
     
     return cell;
 }
@@ -175,7 +175,7 @@
 
 - (void)reload {
     [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {
-        //NSLog(@"%@", response);
+        NSLog(@"%@", response);
         self.tweets = [Tweet tweetsWithArray:response];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

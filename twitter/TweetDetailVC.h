@@ -18,6 +18,12 @@
 @property (nonatomic, weak) IBOutlet UILabel * favoritesLabel;
 @property (nonatomic, weak) IBOutlet UILabel * retweetsLabel;
 
+- (IBAction)favoriteButtonTapped:(UIButton *)sender;
+- (IBAction)retweetButtonTapped:(UIButton *)sender;
+
+
+
+
 
 @property (nonatomic, strong) Tweet *tweet;
 

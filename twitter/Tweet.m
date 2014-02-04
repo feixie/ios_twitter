@@ -8,6 +8,7 @@
 
 #import "Tweet.h"
 
+
 @implementation Tweet
 
 - (NSString *)text {
@@ -18,11 +19,11 @@
     return [self.data valueOrNilForKeyPath:@"created_at"];
 }
 
-- (NSString *)favoriteCount {
+- (NSNumber *)favoriteCount {
     return [self.data valueOrNilForKeyPath:@"favorite_count"];
 }
 
-- (NSString *)retweetCount {
+- (NSNumber *)retweetCount {
     return [self.data valueOrNilForKeyPath:@"retweet_count"];
 }
 
@@ -34,9 +35,13 @@
     return [[self.data valueOrNilForKeyPath:@"user"] valueOrNilForKeyPath:@"profile_image_url"];
 }
 
+- (NSNumber *)tweetId {
+    return [self.data valueOrNilForKeyPath:@"id"];
+}
+
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {
     NSMutableArray *tweets = [[NSMutableArray alloc] initWithCapacity:array.count];
-    for (NSDictionary *params in array) {
+    for (NSMutableDictionary *params in array) {
         [tweets addObject:[[Tweet alloc] initWithDictionary:params]];
     }
     return tweets;
