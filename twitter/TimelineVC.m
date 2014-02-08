@@ -96,11 +96,14 @@
     cell.nameLabel.text = tweet.name;
     cell.screenNameLabel.text = [@"@" stringByAppendingString:tweet.screenName];
     cell.tweetLabel.text = tweet.text;
+
+    NSInteger hoursSince = [self hoursSinceDate:tweet.timestamp];
+    cell.timestampLabel.text = [[NSString stringWithFormat: @"%d", hoursSince] stringByAppendingString:@"h"];
     
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                          dateStyle:NSDateFormatterShortStyle
-                                                          timeStyle:NSDateFormatterShortStyle];
-    cell.timestampLabel.text = dateString;
+    //NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
+    //                                                      dateStyle:NSDateFormatterShortStyle
+    //                                                      timeStyle:NSDateFormatterShortStyle];
+    //cell.timestampLabel.text = dateString;
     NSString *imageUrl = tweet.profileImageUrl;
     [cell.profilePictureImageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]];
     
@@ -215,6 +218,19 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // Do nothing
     }];
+}
+
+- (NSInteger)hoursSinceDate:(NSDate*)date {
+    NSDate *now = [NSDate date];
+    NSLog(@"date is: %@@", date);
+
+    NSTimeInterval distanceBetweenDates = [now timeIntervalSinceDate:date];
+    double secondsInAnHour = 3600;
+    NSInteger hoursBetweenDates = distanceBetweenDates / secondsInAnHour;
+    
+    NSLog(@"%d@", hoursBetweenDates);
+    return hoursBetweenDates;
+
 }
 
 @end

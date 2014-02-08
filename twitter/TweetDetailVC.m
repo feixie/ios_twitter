@@ -32,7 +32,7 @@
     self.nameLabel.text = self.tweet.name;
     self.screenNameLabel.text = [@"@" stringByAppendingString:self.tweet.screenName];
 
-    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:self.tweet.timestamp
                                                           dateStyle:NSDateFormatterShortStyle
                                                           timeStyle:NSDateFormatterShortStyle];
     self.timestampLabel.text = dateString;

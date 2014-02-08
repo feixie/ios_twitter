@@ -17,8 +17,15 @@
 
 - (NSDate *)timestamp {
     static NSDateFormatter *dateFormatter;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
+    });
 
     NSString *createdAtString = [self.data valueForKey:@"created_at"];
+    NSLog(@"date is: %@", createdAtString);
+
     return[dateFormatter dateFromString:createdAtString];
 }
 
