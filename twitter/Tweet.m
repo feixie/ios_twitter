@@ -24,8 +24,6 @@
     });
 
     NSString *createdAtString = [self.data valueForKey:@"created_at"];
-    NSLog(@"date is: %@", createdAtString);
-
     return[dateFormatter dateFromString:createdAtString];
 }
 

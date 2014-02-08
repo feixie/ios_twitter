@@ -13,9 +13,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "Profile.h"
 
-@interface TimelineVC ()
 
-//@property (nonatomic, strong) NSMutableArray *tweets;
+@interface TimelineVC ()
 
 - (void)onSignOutButton;
 - (void)reload;
@@ -77,7 +76,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [Profile getInstance].tweetArray.count;
-    //return self.tweets.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,7 +89,6 @@
         cell = [nib objectAtIndex:0];
     }
     
-    //Tweet *tweet = self.tweets[indexPath.row];
     Tweet *tweet = [Profile getInstance].tweetArray[indexPath.row];
     cell.nameLabel.text = tweet.name;
     cell.screenNameLabel.text = [@"@" stringByAppendingString:tweet.screenName];
@@ -100,14 +97,21 @@
     NSInteger hoursSince = [self hoursSinceDate:tweet.timestamp];
     cell.timestampLabel.text = [[NSString stringWithFormat: @"%d", hoursSince] stringByAppendingString:@"h"];
     
-    //NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
-    //                                                      dateStyle:NSDateFormatterShortStyle
-    //                                                      timeStyle:NSDateFormatterShortStyle];
-    //cell.timestampLabel.text = dateString;
     NSString *imageUrl = tweet.profileImageUrl;
     [cell.profilePictureImageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]];
     
     //NSLog(@"%@", tweet.retweetCount);
+    
+    // Initialize pull-to-refresh.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(reload) forControlEvents:UIControlEventValueChanged];
+    
+    // Set up pull to refresh
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refresh;
     
     return cell;
 }
@@ -120,7 +124,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *selectedCell = (UITableViewCell *)sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
-    //Tweet *tweet = self.tweets[indexPath.row];
     Tweet *tweet = [Profile getInstance].tweetArray[indexPath.row];
     
     TweetDetailVC *tweetDetailVC = (TweetDetailVC *)segue.destinationViewController;
@@ -186,6 +189,13 @@
 
 #pragma mark - Private methods
 
+-(void)refreshView: (UIRefreshControl *)refresh {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing tweets..."];
+    
+    [self reload];
+    [refresh endRefreshing];
+}
+
 - (void)onSignOutButton {
     [User setCurrentUser:nil];
 }
@@ -212,7 +222,6 @@
 - (void)reload {
     [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {
         //NSLog(@"%@", response);
-        //self.tweets = [Tweet tweetsWithArray:response];
         [Profile getInstance].tweetArray = [Tweet tweetsWithArray:response];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
