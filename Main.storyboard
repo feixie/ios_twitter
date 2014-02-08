@@ -9,16 +9,16 @@
         <scene sceneID="wJi-qt-E0a">
             <objects>
                 <tableViewController id="ruc-9Z-DRM" customClass="TimelineVC" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" id="kuY-7B-Jov">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="104" sectionHeaderHeight="22" sectionFooterHeight="22" id="kuY-7B-Jov">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TweetCell" rowHeight="125" id="lll-Xx-uGC" customClass="TweetCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="125"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TweetCell" rowHeight="104" id="lll-Xx-uGC" customClass="TweetCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lll-Xx-uGC" id="qke-Eq-19b">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="124"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="103"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ss5-66-iGV">
@@ -49,7 +49,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="@feythegreat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HZ-H4-AY9">
-                                            <rect key="frame" x="123" y="9" width="79" height="16"/>
+                                            <rect key="frame" x="109" y="9" width="102" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.57721212635869568" green="0.57721212635869568" blue="0.57721212635869568" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,16 +57,16 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="4HZ-H4-AY9" firstAttribute="leading" secondItem="Yti-Fr-VbJ" secondAttribute="trailing" constant="14" id="30n-He-Lg3"/>
                                         <constraint firstItem="Yti-Fr-VbJ" firstAttribute="leading" secondItem="Ss5-66-iGV" secondAttribute="trailing" constant="8" id="AmI-QM-Xxq"/>
                                         <constraint firstItem="LUI-Y8-kyG" firstAttribute="top" secondItem="qke-Eq-19b" secondAttribute="top" constant="9" id="Cbe-Pu-rw9"/>
                                         <constraint firstItem="Yti-Fr-VbJ" firstAttribute="top" secondItem="qke-Eq-19b" secondAttribute="top" constant="8" id="Cda-ep-m9c"/>
                                         <constraint firstAttribute="trailing" secondItem="o0O-oh-2nw" secondAttribute="trailing" id="EUn-yb-m6A"/>
                                         <constraint firstItem="Ss5-66-iGV" firstAttribute="leading" secondItem="qke-Eq-19b" secondAttribute="leading" constant="7" id="IhB-ej-aAq"/>
+                                        <constraint firstItem="4HZ-H4-AY9" firstAttribute="leading" secondItem="Yti-Fr-VbJ" secondAttribute="trailing" id="Lcf-Bl-3KW"/>
                                         <constraint firstItem="o0O-oh-2nw" firstAttribute="top" secondItem="4HZ-H4-AY9" secondAttribute="bottom" constant="8" id="Pt6-qZ-ChH"/>
+                                        <constraint firstItem="LUI-Y8-kyG" firstAttribute="leading" secondItem="4HZ-H4-AY9" secondAttribute="trailing" constant="25" id="Pxw-lS-1JH"/>
                                         <constraint firstAttribute="trailing" secondItem="LUI-Y8-kyG" secondAttribute="trailing" id="QF3-ty-LeT"/>
                                         <constraint firstItem="o0O-oh-2nw" firstAttribute="leading" secondItem="Ss5-66-iGV" secondAttribute="trailing" constant="8" id="TZ5-a4-Eau"/>
-                                        <constraint firstItem="LUI-Y8-kyG" firstAttribute="leading" secondItem="4HZ-H4-AY9" secondAttribute="trailing" constant="34" id="U1U-Oa-4YF"/>
                                         <constraint firstAttribute="trailing" secondItem="o0O-oh-2nw" secondAttribute="trailing" id="h3N-TC-Nku"/>
                                         <constraint firstItem="Ss5-66-iGV" firstAttribute="top" secondItem="qke-Eq-19b" secondAttribute="top" constant="8" id="xGk-tS-4Bu"/>
                                         <constraint firstItem="4HZ-H4-AY9" firstAttribute="top" secondItem="qke-Eq-19b" secondAttribute="top" constant="9" id="zOo-Xo-Bd2"/>
