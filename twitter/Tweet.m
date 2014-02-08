@@ -15,20 +15,41 @@
     return [self.data valueOrNilForKeyPath:@"text"];
 }
 
-- (NSString *)timestamp {
-    return [self.data valueOrNilForKeyPath:@"created_at"];
+- (NSDate *)timestamp {
+    static NSDateFormatter *dateFormatter;
+
+    NSString *createdAtString = [self.data valueForKey:@"created_at"];
+    return[dateFormatter dateFromString:createdAtString];
 }
 
 - (NSNumber *)favoriteCount {
     return [self.data valueOrNilForKeyPath:@"favorite_count"];
 }
 
+- (void)setFavoriteCount: (NSNumber *)newCount {
+    NSMutableDictionary *temp = [self.data mutableCopy];
+    [temp setObject:newCount forKey:@"favorite_count"];
+    
+    self.data = [temp copy];
+}
+
 - (NSNumber *)retweetCount {
     return [self.data valueOrNilForKeyPath:@"retweet_count"];
 }
 
+- (void)setRetweetCount: (NSNumber *)newCount {
+    NSMutableDictionary *temp = [self.data mutableCopy];
+    [temp setObject:newCount forKey:@"retweet_count"];
+    
+    self.data = [temp copy];
+}
+
 - (NSString *)name {
     return [[self.data valueOrNilForKeyPath:@"user"] valueOrNilForKeyPath:@"name"];
+}
+
+- (NSString *)screenName {
+    return [[self.data valueOrNilForKeyPath:@"user"] valueOrNilForKeyPath:@"screen_name"];
 }
 
 - (NSString *)profileImageUrl {

@@ -13,6 +13,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView * profilePictureImage;
 @property (nonatomic, weak) IBOutlet UILabel * nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel * screenNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * timestampLabel;
 @property (nonatomic, weak) IBOutlet UILabel * textLabel;
 @property (nonatomic, weak) IBOutlet UILabel * favoritesLabel;
@@ -20,9 +21,7 @@
 
 - (IBAction)favoriteButtonTapped:(UIButton *)sender;
 - (IBAction)retweetButtonTapped:(UIButton *)sender;
-
-
-
+- (IBAction)replyButtonTapped:(UIButton *)sender;
 
 
 @property (nonatomic, strong) Tweet *tweet;

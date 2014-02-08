@@ -31,6 +31,12 @@
 		4A2D263314064B2DA5BDFE0E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC1DF52D3B94E9285F4C2F7 /* libPods.a */; };
 		A6F1F7AB189EE187007ED9D2 /* TweetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F1F7A9189EE187007ED9D2 /* TweetDetailVC.m */; };
 		A6F1F7AE189EFFB0007ED9D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F1F7AD189EFFB0007ED9D2 /* Main.storyboard */; };
+		A6F1F7B218A07F31007ED9D2 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F1F7B018A07F31007ED9D2 /* ComposeViewController.m */; };
+		A6F1F7B318A07F31007ED9D2 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6F1F7B118A07F31007ED9D2 /* ComposeViewController.xib */; };
+		A6F1F7FD18A54CA1007ED9D2 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F1F7FC18A54CA1007ED9D2 /* Profile.m */; };
+		A6F1F7FF18A5A380007ED9D2 /* 28-star.png in Resources */ = {isa = PBXBuildFile; fileRef = A6F1F7FE18A5A380007ED9D2 /* 28-star.png */; };
+		A6F1F80118A5A38C007ED9D2 /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = A6F1F80018A5A38C007ED9D2 /* 02-redo.png */; };
+		A6F1F80318A5A410007ED9D2 /* 08-chat.png in Resources */ = {isa = PBXBuildFile; fileRef = A6F1F80218A5A410007ED9D2 /* 08-chat.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +88,14 @@
 		A6F1F7A8189EE187007ED9D2 /* TweetDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailVC.h; sourceTree = "<group>"; };
 		A6F1F7A9189EE187007ED9D2 /* TweetDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailVC.m; sourceTree = "<group>"; };
 		A6F1F7AD189EFFB0007ED9D2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
+		A6F1F7AF18A07F31007ED9D2 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		A6F1F7B018A07F31007ED9D2 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		A6F1F7B118A07F31007ED9D2 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
+		A6F1F7FB18A54CA1007ED9D2 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		A6F1F7FC18A54CA1007ED9D2 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		A6F1F7FE18A5A380007ED9D2 /* 28-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "28-star.png"; path = "twitterTests/28-star.png"; sourceTree = SOURCE_ROOT; };
+		A6F1F80018A5A38C007ED9D2 /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "02-redo.png"; path = "twitterTests/02-redo.png"; sourceTree = SOURCE_ROOT; };
+		A6F1F80218A5A410007ED9D2 /* 08-chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "08-chat.png"; sourceTree = "<group>"; };
 		CCC1DF52D3B94E9285F4C2F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -154,6 +168,8 @@
 				42CC893B17AF4C6B00B6D34B /* AppDelegate.m */,
 				42CC893D17AF4C6B00B6D34B /* Images.xcassets */,
 				42CC893217AF4C6A00B6D34B /* Supporting Files */,
+				A6F1F7FB18A54CA1007ED9D2 /* Profile.h */,
+				A6F1F7FC18A54CA1007ED9D2 /* Profile.m */,
 			);
 			path = twitter;
 			sourceTree = "<group>";
@@ -161,6 +177,9 @@
 		42CC893217AF4C6A00B6D34B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A6F1F7FE18A5A380007ED9D2 /* 28-star.png */,
+				A6F1F80018A5A38C007ED9D2 /* 02-redo.png */,
+				A6F1F80218A5A410007ED9D2 /* 08-chat.png */,
 				42CC893317AF4C6A00B6D34B /* twitter-Info.plist */,
 				42CC893417AF4C6A00B6D34B /* InfoPlist.strings */,
 				42CC893717AF4C6B00B6D34B /* main.m */,
@@ -199,6 +218,9 @@
 				A6F1F7A8189EE187007ED9D2 /* TweetDetailVC.h */,
 				A6F1F7A9189EE187007ED9D2 /* TweetDetailVC.m */,
 				42CC89B517B0D7AC00B6D34B /* Utilities */,
+				A6F1F7AF18A07F31007ED9D2 /* ComposeViewController.h */,
+				A6F1F7B018A07F31007ED9D2 /* ComposeViewController.m */,
+				A6F1F7B118A07F31007ED9D2 /* ComposeViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -331,6 +353,8 @@
 				42CC89AB17B0C31900B6D34B /* SignedOutVC.xib in Resources */,
 				42CC893617AF4C6A00B6D34B /* InfoPlist.strings in Resources */,
 				42CC893E17AF4C6B00B6D34B /* Images.xcassets in Resources */,
+				A6F1F80318A5A410007ED9D2 /* 08-chat.png in Resources */,
+				A6F1F7B318A07F31007ED9D2 /* ComposeViewController.xib in Resources */,
 				A6F1F7AE189EFFB0007ED9D2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,6 +364,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				42CC894F17AF4C6B00B6D34B /* InfoPlist.strings in Resources */,
+				A6F1F80118A5A38C007ED9D2 /* 02-redo.png in Resources */,
+				A6F1F7FF18A5A380007ED9D2 /* 28-star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,10 +410,12 @@
 				42CC89B917B0D7DD00B6D34B /* NSDictionary+CPAdditions.m in Sources */,
 				42CC89AA17B0C31900B6D34B /* SignedOutVC.m in Sources */,
 				42CC896117AF871500B6D34B /* TwitterClient.m in Sources */,
+				A6F1F7B218A07F31007ED9D2 /* ComposeViewController.m in Sources */,
 				A6F1F7AB189EE187007ED9D2 /* TweetDetailVC.m in Sources */,
 				42CC89BF17B0F02600B6D34B /* TweetCell.m in Sources */,
 				42CC89AE17B0C7A600B6D34B /* User.m in Sources */,
 				42CC89B117B0C7B800B6D34B /* Tweet.m in Sources */,
+				A6F1F7FD18A54CA1007ED9D2 /* Profile.m in Sources */,
 				42CC89B417B0D63C00B6D34B /* RestObject.m in Sources */,
 				42CC895D17AF6FBB00B6D34B /* TimelineVC.m in Sources */,
 				42CC893C17AF4C6B00B6D34B /* AppDelegate.m in Sources */,

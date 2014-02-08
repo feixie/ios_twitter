@@ -25,6 +25,8 @@
 // Tweets API
 - (void)retweetWithId:(NSNumber*)id success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+- (void)tweetWithText:(NSString*)text replyTo:(NSNumber*)replyTo success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 // Favorites API
 - (void)favoriteWithId:(NSNumber*)id success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

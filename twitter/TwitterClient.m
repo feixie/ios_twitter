@@ -75,6 +75,15 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
 
 }
 
+- (void)tweetWithText:(NSString*)text replyTo:(NSNumber*)replyTo success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"status": text}];
+    if (replyTo != nil)
+    {
+        [params setObject:replyTo forKey:@"in_reply_to_status_id"];
+    }
+    [self postPath:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
+}
+
 #pragma mark - Favoriates API
 
 - (void)favoriteWithId:(NSNumber*)id success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {

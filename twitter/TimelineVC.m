@@ -9,10 +9,13 @@
 #import "TimelineVC.h"
 #import "TweetCell.h"
 #import "TweetDetailVC.h"
+#import "ComposeViewController.h"
+#import "UIImageView+AFNetworking.h"
+#import "Profile.h"
 
 @interface TimelineVC ()
 
-@property (nonatomic, strong) NSMutableArray *tweets;
+//@property (nonatomic, strong) NSMutableArray *tweets;
 
 - (void)onSignOutButton;
 - (void)reload;
@@ -38,6 +41,7 @@
         self.title = @"Twitter";
 
         [self reload];
+        [self loadProfile];
     }
     return self;
 }
@@ -46,7 +50,9 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNewButton)];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -70,7 +76,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.tweets.count;
+    return [Profile getInstance].tweetArray.count;
+    //return self.tweets.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,12 +91,18 @@
         cell = [nib objectAtIndex:0];
     }
     
-    Tweet *tweet = self.tweets[indexPath.row];
+    //Tweet *tweet = self.tweets[indexPath.row];
+    Tweet *tweet = [Profile getInstance].tweetArray[indexPath.row];
     cell.nameLabel.text = tweet.name;
+    cell.screenNameLabel.text = [@"@" stringByAppendingString:tweet.screenName];
     cell.tweetLabel.text = tweet.text;
-    cell.timestampLabel.text = tweet.timestamp;
+    
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterShortStyle];
+    cell.timestampLabel.text = dateString;
     NSString *imageUrl = tweet.profileImageUrl;
-    //[cell.profilePictureImageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]];
+    [cell.profilePictureImageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]];
     
     //NSLog(@"%@", tweet.retweetCount);
     
@@ -104,7 +117,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *selectedCell = (UITableViewCell *)sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
-    Tweet *tweet = self.tweets[indexPath.row];
+    //Tweet *tweet = self.tweets[indexPath.row];
+    Tweet *tweet = [Profile getInstance].tweetArray[indexPath.row];
     
     TweetDetailVC *tweetDetailVC = (TweetDetailVC *)segue.destinationViewController;
     tweetDetailVC.tweet = tweet;
@@ -173,10 +187,30 @@
     [User setCurrentUser:nil];
 }
 
+
+- (void)onNewButton {
+    ComposeViewController *composeVC = [[ComposeViewController alloc] init];
+    [self.navigationController pushViewController:composeVC animated:YES];
+}
+
+- (void)loadProfile {
+    [[TwitterClient instance] currentUserWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+        NSLog(@"%@", response);
+        // Load user profile into dictionary
+        [Profile getInstance].userProfile = response;
+        //[Profile initWithProfile:response];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // Do nothing
+    }];
+    
+}
+
 - (void)reload {
     [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"%@", response);
-        self.tweets = [Tweet tweetsWithArray:response];
+        //NSLog(@"%@", response);
+        //self.tweets = [Tweet tweetsWithArray:response];
+        [Profile getInstance].tweetArray = [Tweet tweetsWithArray:response];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // Do nothing
